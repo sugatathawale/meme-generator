@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiUser, FiUsers, FiUserCheck, FiLock } from 'react-icons/fi';
-
+import logo from '../../assets/image.png'
 const LoginCard = ({ role, icon, gradient, credentials, onSubmit }) => {
   const [formData, setFormData] = useState({ username: '', password: '' });
 
@@ -19,7 +19,7 @@ const LoginCard = ({ role, icon, gradient, credentials, onSubmit }) => {
         <h2 className="text-xl font-bold text-white mb-1">{role}</h2>
         <p className="text-gray-100 text-sm opacity-90">Access {role.toLowerCase()} dashboard</p>
       </div>
-      
+
       <div className="p-6">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -90,14 +90,14 @@ const Login = () => {
   ];
 
   const handleLogin = (credentials) => {
-    const role = roles.find(r => 
-      r.credentials.username === credentials.username && 
+    const role = roles.find(r =>
+      r.credentials.username === credentials.username &&
       r.credentials.password === credentials.password
     );
 
     if (role) {
-      localStorage.setItem('user', JSON.stringify({ 
-        username: credentials.username, 
+      localStorage.setItem('user', JSON.stringify({
+        username: credentials.username,
         role: role.role.toLowerCase().replace(' ', '')
       }));
       navigate('/dashboard');
@@ -111,11 +111,14 @@ const Login = () => {
       <div className="max-w-6xl mx-auto">
         {/* Logo Section */}
         <div className="text-center mb-12">
-          <div className="w-32 h-32 mx-auto bg-white rounded-full p-4 shadow-lg mb-4">
-            <div className="w-full h-full bg-contain bg-center bg-no-repeat"
-                 style={{ backgroundImage: "url('/crossfit-logo.png')" }}>
+          <div className="w-32 h-32 mx-auto rounded-full p-4 shadow-lg mb-4 flex items-center justify-center overflow-hidden">
+            <div
+              className="w-full h-full bg-contain bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${logo})` }}
+            >
             </div>
           </div>
+
           <h1 className="text-3xl font-bold text-white mb-2">CrossFit Admin Panel</h1>
           <p className="text-gray-400">Choose your role to login</p>
         </div>
